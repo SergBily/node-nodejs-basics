@@ -1,3 +1,16 @@
+import { readFile} from 'fs/promises';
+import { existsSync } from 'fs';
+
 export const read = async () => {
-    // Write your code here 
+  const readableFilePath = './files/fileToRead.txt';
+  try {
+    if (existsSync(readableFilePath)) {
+      const contentReadableFile = await readFile(readableFilePath, { encoding: 'utf8' });
+      console.log(contentReadableFile);
+    } else {
+      throw new Error('FS operation failed');
+    }
+   } catch (error) {
+    console.error(error.message);
+   }
 };
