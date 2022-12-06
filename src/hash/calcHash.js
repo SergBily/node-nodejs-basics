@@ -5,17 +5,14 @@ import { createReadStream } from "fs";
 
 export const calculateHash = async () => {
   const hash = createHash('sha256');
-  const input = createReadStream('./files/fileToCalculateHashFor.txt');
-  // hash.setEncoding('hex');
+  const readable = createReadStream('./files/fileToCalculateHashFor.txt');
 
-  // const data = input.read();
-  // if (data) hash.update(data);
-  input.on('readable', () => {
-    const data = input.read();
-    hash.update(data);
-
+  readable.on('readable', () => {
+    const data = readable.read();
+    if (data) {
+      hash.update(data);
+    } else {
+      console.log(hash.digest('hex'));
+    }
   })
-  return hash.digest('hex')
 };
-
-console.log(calculateHash());
