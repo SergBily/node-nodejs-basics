@@ -1,16 +1,17 @@
 import { writeFile } from 'fs/promises';
-import { existsSync } from 'fs';
+import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
+
+const FILE_NAME = 'fresh.txt';
+const content = 'I am fresh and youngd';
 
 export const create = async () => {
-  const createFilesPath = './files/fresh.txt'
+  const url = getSourceUrl(FILES_PATH, FILE_NAME);
   try {
-    if (existsSync(createFilesPath)) {
-      throw new Error('FS operation failed');
-    } else {
-      await writeFile(createFilesPath, 'I am fresh and young');
-    }
-
-  } catch (error) {
-    console.error(error.message);
+    await writeFile(url, content, { flag: 'wx' });
+  } catch (_error) {
+    throw new Error(ERROR_MESSAGE);
   }
 };
+
+await create();

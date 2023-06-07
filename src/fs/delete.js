@@ -1,15 +1,16 @@
 import { rm } from 'fs/promises';
-import { existsSync } from 'fs'
+import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
+import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+
+const nameFile = 'fileToRemove.txt';
 
 export const remove = async () => {
-  const removeFilePath = './files/fileToRemove.txt';
+  const pathToFile = getSourceUrl(FILES_PATH, nameFile);
     try {
-      if (existsSync(removeFilePath)) {
-        await rm(removeFilePath);
-      } else {
-        throw new Error('FS operation failed');
-      }
+        await rm(pathToFile);
     } catch (error) {
-      console.error(error.message);
+      throw new Error(ERROR_MESSAGE);
     }
 };
+
+await remove();

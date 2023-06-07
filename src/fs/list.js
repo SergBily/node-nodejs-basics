@@ -1,18 +1,15 @@
-import { opendir } from 'fs/promises';
-import { existsSync } from 'fs';
+import { readdir } from 'fs/promises';
+import { FILES_PATH } from './constants.js';
 
 export const list = async () => {
-  const dirPath = './files';
   try {
-    if (existsSync(dirPath)) {
-      const allFiles = await opendir(dirPath);
-      for await (const dirent of allFiles) {
-        console.log(dirent.name);
+      const allFiles = await readdir(FILES_PATH);
+      for await (const file of allFiles) {
+        console.log(file);
       }
-    } else {
-      throw new Error('FS operation failed');
-    }
-   } catch (error) {
-    console.error(error.message);
+   } catch {
+    throw new Error('FS operation failed');
    }
 };
+
+await list();

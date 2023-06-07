@@ -1,21 +1,22 @@
-import { mkdir, opendir, copyFile} from 'fs/promises';
-import { existsSync } from 'fs';
+import { mkdir, copyFile, constants, readdir } from 'fs/promises';
+import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
+
+const destinationSourceFolder = 'src/fs/files_copy';
 
 export const copy = async () => {
-  const dirPath = './files';
-  const CopyDirPath = './files_copy';
   try {
-    if (existsSync(CopyDirPath)) {
-      throw new Error('FS operation failed');
-    } else {
-      await mkdir(CopyDirPath);
-      const filesDir = await opendir(dirPath);
+      const [filesDir] = await Promise.all([readdir(FILES_PATH), mkdir(destinationSourceFolder)]);
 
-      for await (const dirent of filesDir) {
-        await copyFile(`${dirPath}/${dirent.name}`, `${CopyDirPath}/${dirent.name}`);
+      for (const file of filesDir) {
+        await copyFile(
+          `${FILES_PATH}/${file}`,
+          `${destinationSourceFolder}/${file}`,
+          constants.COPYFILE_EXCL
+          );
      }
-    }
-   } catch (error) {
-    console.error(error.message);
+   } catch (_error) {
+    throw new Error(ERROR_MESSAGE);
    }
 };
+
+await copy();

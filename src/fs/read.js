@@ -1,16 +1,18 @@
 import { readFile} from 'fs/promises';
 import { existsSync } from 'fs';
+import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
+import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+
+const nameFile = 'fileToRead.txt';
 
 export const read = async () => {
-  const readableFilePath = './files/fileToRead.txt';
+  const pathToFile = getSourceUrl(FILES_PATH, nameFile)
   try {
-    if (existsSync(readableFilePath)) {
-      const contentReadableFile = await readFile(readableFilePath, { encoding: 'utf8' });
+      const contentReadableFile = await readFile(pathToFile, { encoding: 'utf8' });
       console.log(contentReadableFile);
-    } else {
-      throw new Error('FS operation failed');
-    }
-   } catch (error) {
-    console.error(error.message);
+   } catch {
+    throw new Error(ERROR_MESSAGE);
    }
 };
+
+await read();
