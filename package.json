@@ -4,6 +4,20 @@
   "description": "This repository is the part of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments",
   "type": "module",
   "scripts": {
+    "fs:create": "node src/fs/create.js",
+    "fs:copy": "node src/fs/copy.js",
+    "fs:rename": "node src/fs/rename.js",
+    "fs:delete": "node src/fs/delete.js",
+    "fs:list": "node src/fs/list.js",
+    "fs:read": "node src/fs/read.js",
+    "cli:env": "npx cross-env RSS_FIRST_NAME=Sehio RSS_LAST_NAME=Belyavski node src/cli/env.js",
+    "cli:args": "node src/cli/args.js --arg1 value1 --arg2 value2",
+    "hash:calcHash": "node src/hash/calcHash.js",
+    "streams:write": "node src/streams/write.js",
+    "streams:read": "node src/streams/read.js",
+    "streams:transform": "node src/streams/transform.js",
+    "zip:compress": "node src/zip/compress.js",
+    "zip:decompress": "node src/zip/decompress.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
