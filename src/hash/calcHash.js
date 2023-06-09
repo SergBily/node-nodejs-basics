@@ -1,11 +1,16 @@
 
 import { createHash } from 'crypto';
-import { createReadStream } from "fs";
+import { createReadStream } from 'fs';
+import url from 'url';
+import { getSourceUrl } from '../libs/libs-absolute-pass.js';
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const filePath = 'files/fileToCalculateHashFor.txt';
 
 export const calculateHash = async () => {
   const hash = createHash('sha256');
-  const readable = createReadStream('./files/fileToCalculateHashFor.txt');
+  const fileToReadPath = getSourceUrl(__dirname, filePath)
+  const readable = createReadStream(fileToReadPath);
 
   readable.on('readable', () => {
     const data = readable.read();
@@ -16,3 +21,5 @@ export const calculateHash = async () => {
     }
   })
 };
+
+await calculateHash();
