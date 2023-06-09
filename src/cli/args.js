@@ -1,11 +1,15 @@
 import { argv } from 'process';
+const prefix = '--';
 
 export const parseArgs = () => {
-  const args = argv.slice(2);
-  return args.reduce((prev, cur, index) => cur.includes('--')
+  const argsWithoutDir = argv.slice(2);
+  const stringArgs = argsWithoutDir.reduce((prev, cur, index) => cur.startsWith(prefix)
     ? `${prev} ${cur.slice(2)} is`
-    : index === args.length - 1
+    : index === argsWithoutDir.length - 1
       ? `${prev} ${cur}`
       : `${prev} ${cur},`
     , '').trim();
+  console.log(stringArgs);
 };
+
+parseArgs();
