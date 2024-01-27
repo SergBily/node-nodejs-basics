@@ -1,7 +1,7 @@
 import { readFile} from 'fs/promises';
 import { existsSync } from 'fs';
 import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
-import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { getSourceUrl } from '../libs/getSourceUrl.js';
 
 const nameFile = 'fileToRead.txt';
 

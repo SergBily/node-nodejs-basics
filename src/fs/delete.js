@@ -1,6 +1,6 @@
 import { rm } from 'fs/promises';
 import { FILES_PATH, ERROR_MESSAGE } from './constants.js';
-import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { getSourceUrl } from '../libs/getSourceUrl.js';
 
 const nameFile = 'fileToRemove.txt';
 
