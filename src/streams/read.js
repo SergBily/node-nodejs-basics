@@ -1,6 +1,6 @@
 import { createReadStream } from "fs";
 import url from 'url';
-import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { getSourceUrl } from '../libs/getSourceUrl.js';
 
 const nameFile = 'files/fileToRead.txt';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));

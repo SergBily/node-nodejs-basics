@@ -1,7 +1,7 @@
 import { createWriteStream } from 'fs';
 import { pipeline } from 'stream/promises';
 import url from 'url';
-import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { getSourceUrl } from '../libs/getSourceUrl.js';
 
 const nameFile = 'files/fileToWrite.txt';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));

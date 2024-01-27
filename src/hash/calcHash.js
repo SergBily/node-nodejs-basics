@@ -2,7 +2,7 @@
 import { createHash } from 'crypto';
 import { createReadStream } from 'fs';
 import url from 'url';
-import { getSourceUrl } from '../libs/libs-absolute-pass.js';
+import { getSourceUrl } from '../libs/getSourceUrl.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const filePath = 'files/fileToCalculateHashFor.txt';
