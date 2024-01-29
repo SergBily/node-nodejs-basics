@@ -19,7 +19,7 @@ export const calculateHash = async () => {
     } else {
       console.log(hash.digest('hex'));
     }
-  })
+  });
 };
 
 await calculateHash();
